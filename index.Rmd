@@ -344,6 +344,81 @@ dados unos parámetros configurables que controlan el área de influencia de cad
 
 ---
 
+# Áreas de influencia: Ejemplo
+
+.panelset[
+
+.panel[.panel-name[Celda]
+
+```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2, out.width = "78%", fig.align = "center"}
+knitr::include_graphics("./img/06_Grid50197.png")
+```
+
+]
+
+.panel[.panel-name[Área de influencia]
+
+```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2, out.width = "78%", fig.align = "center"}
+knitr::include_graphics("./img/09_Grid50197.png")
+```
+
+]
+
+.panel[.panel-name[Oficinas]
+
+```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2, out.width = "78%", fig.align = "center"}
+knitr::include_graphics("./img/10_Grid50197.png")
+```
+
+]
+
+.panel[.panel-name[Rutas]
+
+```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2, out.width = "78%", fig.align = "center"}
+knitr::include_graphics("./img/11_Grid50197.png")
+```
+
+]
+
+.panel[.panel-name[Más cercana]
+
+```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2, out.width = "78%", fig.align = "center"}
+knitr::include_graphics("./img/12_Grid50197.png")
+```
+
+]
+
+]
+
+---
+
+# Áreas de influencia: _script_
+
+```{r, eval = FALSE}
+#   Umbral inicial para acotar el número de rutas (Km)
+Threshold <- 50L
+#   Incremento del umbral si no se consigue el número mínimo de rutas
+Step <- 5L
+#   Número mínimo de rutas a evaluar
+MinRutas <- 20L
+```
+
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt4[
+
+El _script_ toma por defecto un **radio de 50km** alrededor de cada punto de población.
+Si el mínimo de Oficinas en dicho radio en **menor de 20**, se incrementa en **intervalos de 5km** hasta alcanzar dicho mínimo.
+
+Se genera un fichero auxiliar que indica, para cada celda, el número de rutas evaluadas, el umbral y las distancias/tiempos
+mínimos y máximos.
+
+Las islas, Ceuta y Melilla juegan en una liga aparte.
+
+Se evaluaron 31 790 732 rutas.
+
+]
+
+---
+
 background-image: url(https://www.ivie.es/wp-content/uploads/2017/02/logo.jpg), url(https://www.uv.es/recursos/fatwirepub/css/logoPeu.png)
 background-position: 95% 5%, 5% 95%
 background-size: 12%, 20%
