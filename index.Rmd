@@ -50,6 +50,49 @@ con 1 sola alteración no trivial: ¡los **origenes**!
 
 ---
 
+# ¿Es conveniente alterar los orígenes? **Si**
+
+La **escala de análisis** de la [monografía de accesibilidad](https://www.ivie.es/es_ES/ptproyecto/distribucion-la-poblacion-acceso-los-servicios-publicos/) era
+**municipal**: [_"...el municipio es un punto, la coordenada de la capital. Implícitamente suponemos que la población está concentrada en ese punto._"](https://fgoerlich.github.io/Routing/#20)
+
+Esta era la **principal limitación del trabajo**. La población &ndash;el orígen de donde partían nuestros cálculos de rutas&ndash; estaba localizada en un punto del municipio,
+de forma que teníamos 8 131 puntos de población, tantos como municipios. 
+
+En cierta forma era si como nuestros destinos no hubieran estado georeferenciados, y solo dispusiérmos de la información del número de oficinas que existen en cada municipio,
+y estas las localizáramos en el mismo punto que la población.
+
+**La georeferenciación de las oficinas ciertamente afina los cálculos, ¡`r emo::ji("+1")`!, pero no lo suficiente.**
+
+--
+
+¿Disponemos de población georeferenciada? **No**
+
+--
+
+Bueno, el [INE](https://www.ine.es/) **si** a partir del Censo 2021, ¡pero esta información nunca será publica!
+
+---
+
+# ¿Alternativas por debajo del municipio?
+
+**Secciones Censales**: Poco útiles fuera del mundo urbano &ndash;el 70% de los municipios tiene una sola sección censal&ndash;.
+
+```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("./img/02_SSCC46250.jpg")
+```
+
+---
+
+# ¿Alternativas por debajo del municipio?
+
+**Secciones Censales**: Su exahustiva cobertura del término municipal hace que haya siempre al menos una sección censal residual.
+
+```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("./img/03_SSCC46258.jpg")
+```
+
+---
+
 background-image: url(https://www.ivie.es/wp-content/uploads/2017/02/logo.jpg), url(https://www.uv.es/recursos/fatwirepub/css/logoPeu.png)
 background-position: 95% 5%, 5% 95%
 background-size: 12%, 20%
