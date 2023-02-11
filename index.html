@@ -255,6 +255,96 @@ En la práctica ello significa las funciones que ya teníamos nos sirven para c�
 
 ---
 
+# _Routing_ OSM: Funciones
+
+
+```r
+# Distancia y Tiempo de Viaje entre 2 puntos (coordenadas)
+osm_get_distance &lt;- function (from, to, profile = c("car", "bike", "foot"), server = NULL)
+
+# Distancia y Tiempo de Viaje entre 2 vectores de coordenadas
+oms_distance &lt;- function(from, to, profile = c("car", "bike", "foot"), server = NULL)
+```
+
+- `osm_get_distance()`: ruta única entre 2 puntos (coordenadas) en WGS84.
+
+- `oms_distance()`: rutas masivas _pairwise_ entre 2 vectores de puntos (coordenadas), o entre un origen y múltiples destinos o entre múltiples orígenes y un destino en WGS84.
+
+Calcula rutas en **coche**, a **pie** o en **bicicleta**.
+
+La opción `server` permite acceder a un servidor local.
+
+En ambos casos devuelve un `tibble` con la distancia (en metros), el tiempo de viaje (en segundos) y una variable de _status_: `OK`, `NULL_VALUES` o `code server`.
+
+---
+
+# _Routing_ OSM: Funciones - _tecnicality_
+
+
+```r
+# snap de coordenadas a la street network
+osm_nearest &lt;- function(longitud, latitud, profile = c("car", "bike", "foot"), server = NULL)
+```
+
+- `osm_nearest()`: dadas unas coordenadas cualquiera (en WGS84) devuelve las coordenadas (en WGS84) del nodo de la red más cercano y su distancia.
+
+La opción `server` permite acceder a un servidor local.
+
+Devuelve un `tibble` con las coordenadas del nodo, longitud y latitud (en WGS84), la distancia (en metros) al nodo de la red más cercano y una variable de _status_: `OK`, o `code server`.
+
+---
+
+# _Routing_ OSM: Funciones para pintar las rutas
+
+
+```r
+# OSM: Ruta entre 2 puntos (coordenadas)
+osm_get_route &lt;- function(from, to, profile = c("car", "bike", "foot"), overview = c("full", "simplified"), server = NULL, plot = FALSE)
+# OSM: Rutas entre 2 vectores de coordenadas
+osm_routing &lt;- function(from, to, profile = c("car", "bike", "foot"), progress = TRUE, overview = c("full", "simplified"), server = NULL, ...)
+```
+
+Si queremos pintar las rutas sobre un mapa disponemos de las mismas funciones, pero en lugar de devolver un `tibble` con los resultados de distancia/tiempo
+devuelve una _simple feature_ con esos atributos y la geometría de la ruta para operar con ella o pintarla a efectos ilustrativos.
+
+Pero hay que tener en cuenta **dos cuestiones**:
+
+1. Que a pesar de la potencia de cálculo deberemos reducir la dimensión del problema. Esto nos lleva a la determinación de las **áreas de influencia**.
+
+2. Que las rutas son de una celda a una oficina &amp;ndash;esté o no en el municipio&amp;ndash;. Para obtener resultados municipales debemos arbitrar un mecanismo de agregación.
+
+???
+
+En ocasiones la reducción de la dimensión es posible por las propias condiciones del problema. Por ejemplo, en el acceso a los hospitales podemos
+limitar la búsqueda de rutas a celdas/hospitales de la misma comunidad, y esto puede ser suficiente para calcular todas las rutas posibles, dada esta restricción.
+
+---
+
+# Cuestión 1: Áreas de influencia.
+
+Debemos generar áreas de influencia para cada celda, ¡más de 70 mil!, al objeto de ver que oficinas tiene más cerca cada celda dentro de un umbral.
+
+¿Como se han generado las áreas de influencia en este caso?
+
+Aprovechando esta [idea](https://fgoerlich.github.io/Routing/#30), ¡sustituyendo al [Ivie](https://www.ivie.es/es_ES/) por cada una de las celdas!
+
+¡Ahora es irrelevante si el municipio tiene oficina o no!
+
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt4[
+
+En el _project_ de [_R_](https://cran.r-project.org/) un _script_ genera una **base de datos de accesibilidad** &amp;ndash;muchas rutas para cada celda&amp;ndash; a partir
+de
+
+(_i_) coordenadas de población &amp;ndash;centroides de las celdas de la _grid_&amp;ndash; y
+
+(_ii_) coordenadas de las oficinas,
+
+dados unos parámetros configurables que controlan el área de influencia de cada celda.
+
+]
+
+---
+
 background-image: url(https://www.ivie.es/wp-content/uploads/2017/02/logo.jpg), url(https://www.uv.es/recursos/fatwirepub/css/logoPeu.png)
 background-position: 95% 5%, 5% 95%
 background-size: 12%, 20%
