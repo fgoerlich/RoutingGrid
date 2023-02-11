@@ -153,6 +153,108 @@ y medianos de de Galicia o Asturias que tienen cientos de pequeños núcleos y d
 
 ---
 
+# ¡Probemos!
+
+Si la población del municipio estaba concentrada en un punto, ¿donde está la población de la celda a efectos del cálculo de rutas?
+
+--
+
+.pull-left[
+
+&lt;img src="./img/08_Grid10062.png" width="120%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+¡En el centro de la celda!
+
+]
+
+&lt;br&gt;
+
+Tendremos una ruta para cada celda, cuyo centro constituye nuestro origen.
+
+_Bussines as usual!_
+
+---
+
+class: inverse, center, middle
+
+# _Get Started_
+
+---
+
+# Problema real
+
+Disponemos del fichero de Oficinas bancarias de diciembre de 2020 del Banco de España georeferenciado. **Destinos**
+
+Disponemos de una [_grid_ de población para 2018](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/population-distribution-demography/geostat). **Origenes**
+
+Disponemos de la [tecnología para el cálculo de **rutas**](https://go.uv.es/goerlich/Routing): distancias y tiempos sobre la red de carreteras.
+
+Y queremos estimar la **distancia** y el **tiempo** de acceso de **cada municipio** &amp;ndash;o cualquier otra unidad administrativa&amp;ndash; a la **oficina más cercana**.
+
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt4[
+
+Se trata exactamente del **mismo problema** que resolvimos en la [presentación anterior](https://go.uv.es/goerlich/Routing) con la única diferencia que
+ahora disponemos de la población en _grid_ en lugar de la población por municipio.
+
+Esta generalización permitirá contestar preguntas más interesantes que el de la oficina más cercana.
+
+]
+
+---
+
+# Problema real: _Houston, we have a problem_ 
+
+¿Cual es la dimensión de nuestro problema?
+
+**Origenes:** 74 914 celdas.
+
+**Destinos:** 22 558 oficinas.
+
+--
+
+La matriz de **O**rigen-**D**estino (OD) tiene 1 689 910 012 celdas.
+
+¡Debemos calcular más de 1 600 millones de rutas y elegir la óptima para cada celda! ¡Y luego agregarlas a municipios! ¡💩!
+
+--
+
+Claramente debemos reducir la dimensión de nuestro problema. ¡Ya era necesario reducirlo con los 8 131 municipios!
+
+Debe resultar obvio que **no** podemos resolver este problema con un servidor de rutas remoto: [Cartociudad](https://www.cartociudad.es/portal/),
+[Google](https://mapsplatform.google.com/) o [Open Street Maps (OSM)](https://www.openstreetmap.org/#map=6/40.007/-2.488), como hicimos antes.
+
+
+Ya sea por tiempo de cómputo o por coste.
+
+---
+
+# Problema real: _We found a solution_ ¡😄!
+
+Afortunadamente es posible instalar en local un servidor de rutas basado en [OSM](http://project-osrm.org/) accesible mediante una
+librería de [_R_](https://cran.r-project.org/), [osrm](https://cran.r-project.org/web/packages/osrm/osrm.pdf), o atacando directamente
+la [API](http://project-osrm.org/docs/v5.24.0/api/#).
+
+¡Héctor lo ha instalado de forma exitosa, 👍!
+
+¡Y funciona _smooth as a baby´s bottom_!
+
+El rendimiento del servidor es de unos 4.5 millones de rutas día.
+
+En la práctica ello significa las funciones que ya teníamos nos sirven para cálculos intensivos abandonando [Cartociudad](https://www.cartociudad.es/portal/) y
+[Google](https://mapsplatform.google.com/), y utilizando solo [OSM](https://www.openstreetmap.org/#map=6/40.007/-2.488).
+
+¡Además hacemos los cálculos en casa!
+
+.footnote[(*) El rendimiento de Cartociudad es de unas 300 000 rutas día y, probablemente, dismininuye con el número de rutas.]
+
+---
+
 background-image: url(https://www.ivie.es/wp-content/uploads/2017/02/logo.jpg), url(https://www.uv.es/recursos/fatwirepub/css/logoPeu.png)
 background-position: 95% 5%, 5% 95%
 background-size: 12%, 20%
