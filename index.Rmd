@@ -1,6 +1,6 @@
 ---
 title: "Distancias y Tiempos"
-subtitle: "🌎 <br><br> con _grid_ <br> y _R_"
+subtitle: "🌎 <br><br> con población en _grid_ <br> y _R_"
 author: "Francisco Goerlich"
 institute: "Universidad de Valencia e Ivie"
 date: "??/0?/2023"
