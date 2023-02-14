@@ -559,7 +559,7 @@ Valor nacional: 208 (sd = 319)
 ### Población con al menos 1 oficina accesible en 15m por municipio
 
 ```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2.1, out.width = "70%", fig.align = "center"}
-readxl::read_xlsx(here("data", "06AccesibilidadOficinas_.xlsx"), sheet = "Municipios") %>%
+readxl::read_xlsx(here("data", "06AccesibilidadOficinas.xlsx"), sheet = "Municipios") %>%
   select(Provincia, CodMuni, Municipio, POBAcceso, POBNOAcceso) %>%
   rename(`Código` = CodMuni, `Con Acceso`= POBAcceso, `Sin Acceso` = POBNOAcceso) %>%
   DT::datatable(extensions = 'Buttons', options = list(dom = "Bfrtip", pageLength = 5, buttons = c('csv', 'excel', 'pdf', 'print'))) %>%
