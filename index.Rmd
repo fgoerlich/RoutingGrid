@@ -1,6 +1,6 @@
 ---
 title: "Distancias y Tiempos"
-subtitle: "🌎 <br><br> con población en _grid_ <br> y _R_"
+subtitle: "🌎 <br><br> con _grid_ <br> y _R_"
 author: "Francisco Goerlich"
 institute: "Universidad de Valencia e Ivie"
 date: "??/0?/2023"
@@ -500,7 +500,7 @@ En el _project_ de [_R_](https://cran.r-project.org/) hay 6 _scripts_ que contes
 # Oficina más cercana por DEGURBA
 
 ```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2.1, out.width = "70%", fig.align = "center"}
-readxl::read_xlsx(here("data", "03AccesibilidadOficinas_.xlsx"), sheet = "DEGURBA") %>%
+readxl::read_xlsx(here("data", "03AccesibilidadOficinas.xlsx"), sheet = "DEGURBA") %>%
   select(DEGURBA, Distancia = DistanciaW, Tiempo = TiempoW) %>%
   mutate(DEGURBA = factor(DEGURBA, levels = c("Urbano", "Intermedio", "Rural"))) %>%
   pivot_longer(!DEGURBA, names_to = "Variable", values_to = "Valor") %>%
@@ -525,7 +525,7 @@ Valores nacionales:
 # Oficinas accesibles en 15m por DEGURBA
 
 ```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2.1, out.width = "70%", fig.align = "center"}
-readxl::read_xlsx(here("data", "05AccesibilidadOficinas_.xlsx"), sheet = "DEGURBA") %>%
+readxl::read_xlsx(here("data", "05AccesibilidadOficinas.xlsx"), sheet = "DEGURBA") %>%
   select(DEGURBA, Oficinas = nOfiW) %>%
   mutate(DEGURBA = factor(DEGURBA, levels = c("Urbano", "Intermedio", "Rural"))) %>%
   ggplot(aes(x = DEGURBA, y = Oficinas)) +
@@ -544,7 +544,7 @@ Valor nacional: 208 (sd = 319)
 ## Oficinas accesibles en una isocrona de 15m por CCAA
 
 ```{r, echo = FALSE, eval = TRUE, fig.asp = 2/2.1, out.width = "70%", fig.align = "center"}
-readxl::read_xlsx(here("data", "05AccesibilidadOficinas_.xlsx"), sheet = "CCAA") %>%
+readxl::read_xlsx(here("data", "05AccesibilidadOficinas.xlsx"), sheet = "CCAA") %>%
   select(`Código`= CodCCAA, CCAA, Oficinas = nOfiW) %>%
   DT::datatable(options = list(dom = "frtip", pageLength = 8)) %>%
   DT::formatRound("Oficinas", digits = 0, mark = ",")
