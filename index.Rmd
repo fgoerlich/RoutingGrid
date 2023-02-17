@@ -3,7 +3,7 @@ title: "Distancias y Tiempos"
 subtitle: "🌎 <br><br> con población en _grid_ <br> y _R_"
 author: "Francisco Goerlich"
 institute: "Universidad de Valencia e Ivie"
-date: "??/0?/2023"
+date: "24/02/2023"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -58,7 +58,7 @@ La **escala de análisis** de la [monografía de accesibilidad](https://www.ivie
 Esta era la **principal limitación del trabajo**. La población &ndash;el orígen de donde partían nuestros cálculos de rutas&ndash; estaba localizada en un punto del municipio,
 de forma que teníamos 8 131 puntos de población, tantos como municipios. 
 
-En cierta forma era si como nuestros destinos no hubieran estado georeferenciados, y solo dispusiérmos de la información del número de oficinas que existen en cada municipio,
+En cierta forma, era si como nuestros destinos no hubieran estado georeferenciados, solo dispusiérmos de la información del número de oficinas que existen en cada municipio,
 y estas las localizáramos en el mismo punto que la población.
 
 **La georeferenciación de las oficinas ciertamente afina los cálculos, ¡`r emo::ji("+1")`!, pero no lo suficiente.**
@@ -69,7 +69,7 @@ y estas las localizáramos en el mismo punto que la población.
 
 --
 
-Bueno, el [INE](https://www.ine.es/) **si** a partir del Censo 2021, ¡pero esta información nunca será publica!
+Bueno, el [INE](https://www.ine.es/) **si** a partir del Censo 2021, ¡pero esta información nunca será pública!
 
 ---
 
@@ -232,7 +232,7 @@ Debe resultar obvio que **no** podemos resolver este problema con un servidor de
 [Google](https://mapsplatform.google.com/) o [Open Street Maps (OSM)](https://www.openstreetmap.org/#map=6/40.007/-2.488), como hicimos antes.
 
 
-Ya sea por tiempo de cómputo o por coste.
+Tanto por tiempo de cómputo o como por coste en algunos casos.
 
 ---
 
@@ -421,7 +421,7 @@ Se evaluaron 31 790 732 rutas.
 
 # Cuestión 2: Agregación
 
-¿Como paso de las rutas &ndash;distancias/tiempos&ndash; de las celdas a los resultados por municipios &ndash;distancia/tiempo a la oficina más cercana?
+¿Como paso de las rutas &ndash;distancias/tiempos&ndash; de las celdas a los resultados por municipios &ndash;distancia/tiempo a la oficina más cercana&ndash;?
 
 Mediante **promedios ponderados** por la **población** de cada celda del municipio.
 
