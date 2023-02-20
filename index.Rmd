@@ -3,7 +3,7 @@ title: "Distancias y Tiempos"
 subtitle: "🌎 <br><br> con población en _grid_ <br> y _R_"
 author: "Francisco Goerlich"
 institute: "Universidad de Valencia e Ivie"
-date: "24/02/2023"
+date: "03/03/2023"
 output:
   xaringan::moon_reader:
     lib_dir: libs
