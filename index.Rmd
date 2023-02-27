@@ -214,13 +214,13 @@ Esta generalización permitirá contestar preguntas más interesantes que el de 
 
 ¿Cual es la dimensión de nuestro problema?
 
-**Origenes:** 74 914 celdas.
+**Origenes:** 74 914 celdas con población.
 
 **Destinos:** 22 558 oficinas.
 
 --
 
-La matriz de **O**rigen-**D**estino (OD) tiene 1 689 910 012 celdas.
+La matriz de **O**rigen-**D**estino (OD) tiene 1 689 910 012 celdas a rellenar.
 
 ¡Debemos calcular más de 1 600 millones de rutas y elegir la óptima para cada celda! ¡Y luego agregarlas a municipios! ¡`r emo::ji("poop")`!
 
